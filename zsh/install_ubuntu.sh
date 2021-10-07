@@ -9,3 +9,10 @@ link $COMPONENT_DIR/files/.zshenv $HOME/.zshenv
 link $COMPONENT_DIR/files/.zprofile $ZDOTDIR/.zprofile
 
 sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+
+while read p; do
+    echo "Installing plugin $p"
+    wsys zsh install-plugin $p
+done < $COMPONENT_DIR/files/plugins_list.txt
+
+chsh -s /usr/bin/zsh

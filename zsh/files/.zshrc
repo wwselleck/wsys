@@ -67,7 +67,6 @@ bindkey '^xe' edit-command-line
 ######################
 # Python
 ######################
-# Pyenv is setup in .zprofile
 export PATH="$HOME/.poetry/bin:$PATH"
 
 ######################
@@ -126,14 +125,6 @@ then
 else
   . $HOME/.asdf/asdf.sh
 fi
-
-######################
-# Node
-######################
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-nvm alias default v14.15.1
 
 export YVM_DIR=/usr/local/opt/yvm
 [ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
