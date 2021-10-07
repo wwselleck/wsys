@@ -5,6 +5,11 @@ if ! [ -x "$(command -v pip)" ]; then
   exit 1
 fi
 
+if ! [ -x "$(command -v rg)" ]; then
+  echo 'rg is not installed, installing'
+  wsys cli-tools install
+fi
+
 sudo apt install software-properties-common
 sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo apt update
