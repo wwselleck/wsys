@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ln -s $PWD/wsys.sh /usr/local/bin/wsys
