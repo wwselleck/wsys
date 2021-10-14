@@ -23,80 +23,112 @@
 "  <c-k> -> Move to prev placeholder in snippet
 """""""""""""""""""""""""""""""""""""""
 
-let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-css', 'coc-html', 'coc-pyls', 'coc-prettier', 'coc-eslint', 'coc-stylelintplus']
 
-" https://github.com/neoclide/coc.nvim/blob/master/Readme.md
-function! s:show_documentation()
-  if &filetype == 'vim'
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gn <Plug>(coc-diagnostic-next)
-nmap <silent> gp <Plug>(coc-diagnostic-prev)
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-command! -nargs=0 Rename :call CocActionAsync('rename')
+""""""""""""""""""""
+" Completion
+""""""""""""""""""""
+set completeopt=menuone,noselect
 
-" Using CocList
-" Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-nnoremap <silent> <space>n  :<C-u>CocListResume<CR>
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+let g:compe = {}
+let g:compe.enabled = v:true
+let g:compe.autocomplete = v:true
+let g:compe.debug = v:false
+let g:compe.min_length = 1
+let g:compe.preselect = 'enable'
+let g:compe.throttle_time = 80
+let g:compe.source_timeout = 200
+let g:compe.incomplete_delay = 400
+let g:compe.max_abbr_width = 100
+let g:compe.max_kind_width = 100
+let g:compe.max_menu_width = 100
+let g:compe.documentation = v:true
+let g:compe.source = {}
+let g:compe.source.nvim_lsp = v:true
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
 
-"coc-snippets
-imap <C-l> <Plug>(coc-snippets-expand)
+""""""""""""""""""""
+" Nvim Lightbulb
+""""""""""""""""""""
+autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
 
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
+""""""""""""""""""""
+" Language Server
+""""""""""""""""""""
+" This is largely based on the config of the guy who made packer.nvim
+" https://github.com/wbthomason/dotfiles/blob/387ded8ad4c3cb9d5000edbd3b18bc8cb8a186e9/neovim/.config/nvim/lua/config/lsp.lua
+" More reference dotfiles:
+" https://www.reddit.com/r/neovim/comments/l6bbrd/can_anyone_give_a_simple_step_by_step_guide_to/
+" https://github.com/tomaskallup/dotfiles/tree/master/nvim
+lua << EOF
+    local lspconfig = require('lspconfig')
+    local buf_keymap = vim.api.nvim_buf_set_keymap
+    local cmd = vim.cmd
 
+    local keymap_opts = {noremap = true, silent = true}
+    local function on_attach(client)
+        buf_keymap(0, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', keymap_opts)
+        buf_keymap(0, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', keymap_opts)
+        buf_keymap(0, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', keymap_opts)
+        buf_keymap(0, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', keymap_opts)
+        buf_keymap(0, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', keymap_opts)
+        buf_keymap(0, 'n', 'gn', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', keymap_opts)
+        buf_keymap(0, 'n', 'gp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', keymap_opts)
+        buf_keymap(0, 'n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<cr>', keymap_opts)
+            print(client.name)
+            print(vim.inspect(client.resolved_capabilities))
+        if client.resolved_capabilities.document_formatting then
 
-"-------------------
-" Ale
-"
-" Should only be used for linting & lint fixing, not type info
-"-------------------
+            cmd('au BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()')
+            buf_keymap(0, 'n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<cr>', keymap_opts)
+        end
+    end
 
-" Disable linters that conflict with coc.nvim
-let g:ale_linters = {
-\    'javascript': [],
-\    'typescript': [],
-\    'html': [],
-\    'css': []
-\}
+    -- https://phelipetls.github.io/posts/configuring-eslint-to-work-with-neovim-lsp/
+    local eslint = {
+      lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
+      lintStdin = true,
+      lintFormats = {"%f:%l:%c: %m"},
+      lintIgnoreExitCode = true,
+      formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename ${INPUT}",
+      formatStdin = true
+    }
 
-let g:ale_fixers = {
-\    'javascript': [],
-\    'typescript': [],
-\}
-let g:ale_fix_on_save = 1
+    local servers = {
+        tsserver = {
+            on_attach = function(client, bufnr)
+                client.resolved_capabilities.document_formatting = false
+                on_attach(client, bufnr)
+            end,
+        },
+        vimls = {},
+        efm = {
+          init_options = {documentFormatting = true, codeAction = true},
+          settings = {
+            languages = {
+              javascript = {eslint},
+              javascriptreact = {eslint},
+              ["javascript.jsx"] = {eslint},
+              typescript = {eslint},
+              ["typescript.tsx"] = {eslint},
+              typescriptreact = {eslint}
+            }
+          },
+          filetypes = {
+            "javascript",
+            "javascriptreact",
+            "javascript.jsx",
+            "typescript",
+            "typescript.tsx",
+            "typescriptreact"
+          },
+        }
+    }
 
-" https://github.com/w0rp/ale/issues/1413
-" :ALEDisable does not disable fixers, these commands do
-command! DisableFixers       let g:ale_fix_on_save=0
-command! EnableFixers        let g:ale_fix_on_save=1
-command! DisableFixersBuffer let b:ale_fix_on_save=0
-command! EnableFixersBuffer  let b:ale_fix_on_save=0
-
-highlight ALEError ctermbg=white
-highlight ALEWarning ctermbg=white
-
-
-
-
-
+    for server, config in pairs(servers) do
+        config.on_attach = config.on_attach or on_attach
+        lspconfig[server].setup(config)
+    end
+EOF
 
 
 

@@ -1,7 +1,5 @@
 Plug 'tpope/vim-sensible'
 Plug 'scrooloose/nerdcommenter'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-grepper'
 Plug 'jceb/vim-orgmode'
@@ -14,16 +12,16 @@ Plug 'tpope/vim-surround'
 " automatically insert or delete {} () '' stuff
 Plug 'jiangmiao/auto-pairs'
 
-" In-file searching ala 'ack'
-"Plug 'eugen0329/vim-esearch'
-"Plug 'mileszs/ack.vim'
-
-" View undo history
-" :UndotreeToggle -> <leader>u
-Plug 'mbbill/undotree'
-
 " Highlight the yanked region
 Plug 'machakann/vim-highlightedyank'
+
+Plug 'Yggdroot/indentLine'
+
+Plug 'folke/which-key.nvim'
+
+Plug 'nvim-lua/plenary.nvim'
+
+Plug 'vhyrro/neorg'
 
 """""""""""""""""""""""""""
 " Git
@@ -37,12 +35,16 @@ Plug 'airblade/vim-gitgutter'
 """""""""""""""
 " Language Features
 """""""""""""""
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 Plug 'jparise/vim-graphql'
 Plug 'fatih/vim-go'
 " Kind of a language feature?
 Plug 'honza/vim-snippets'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'hrsh7th/nvim-compe'
+Plug 'neovim/nvim-lspconfig'
+Plug 'kosayoda/nvim-lightbulb'
 
 """""""""""""""
 "  Color

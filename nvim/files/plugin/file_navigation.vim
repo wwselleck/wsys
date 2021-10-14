@@ -6,12 +6,10 @@
 " :Finder -> Open current file in Finder
 " ,n -> Toggle file browser (netrw)
 " ,j -> Find current file in file browser (netrw)
-" ,ff -> Fuzzy search files (FZF)
-" ,fa -> Fuzzy search lines (FZF)
-" ,fl -> Fuzzy search lines in buffer (FZF)
-" ,fb -> Fuzzy search buffers (FZF)
-" ,fh -> Fuzzy search file history (FZF)
-" ,fc -> Fuzzy search command history (FZF)
+" ,ff -> Fuzzy search files (Telescope)
+" ,fa -> Fuzzy search lines (Telescope)
+" ,fl -> Fuzzy search lines in buffer (Telescope)
+" ,fb -> Fuzzy search buffers (Telescope)
 """""""""""""""""""""""""""""""""""""""
 
 command! Finder silent exe '!open ' . expand("%:p:h")
@@ -19,15 +17,28 @@ command! Finder silent exe '!open ' . expand("%:p:h")
 "-------------------
 " FZF
 "-------------------
-"let g:fzf_height = '30%'
-let g:fzf_layout = { 'down': '~30%', 'window': { 'width': 0.9, 'height': 0.6 } }
-autocmd VimEnter * nmap <leader>ff :Files<CR>
-autocmd VimEnter * nmap <leader>fg :GFiles<CR>
-autocmd VimEnter * nmap <leader>fa :Rg<CR>
-autocmd VimEnter * nmap <leader>fl :BLines<CR>
-autocmd VimEnter * nmap <leader>fb :Buffers<CR>
-autocmd VimEnter * nmap <leader>fh :History<CR>
-autocmd VimEnter * nmap <leader>fc :History:<CR>
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files({hidden = true})<cr>
+nnoremap <leader>fa <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+nnoremap <leader>fl <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
+
+lua << EOF
+require('telescope').setup{
+ defaults = {
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--hidden',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case'
+    },
+  }
+}
+EOF
 
 autocmd VimEnter * nnoremap <Leader>e :Grepper<CR>
 autocmd VimEnter * let g:grepper.tools = ['rg']
