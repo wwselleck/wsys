@@ -25,7 +25,8 @@ set termguicolors
 " light and dark variations
 set background=dark
 
-colorscheme bogster
+colorscheme tokyonight
+let g:tokyonight_style = 'night'
 
 highlight Normal ctermbg=NONE
 highlight nonText ctermbg=NONE

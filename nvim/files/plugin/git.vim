@@ -24,3 +24,8 @@
 "-------------------
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gd :Gvdiff<CR>
+
+"-------------------
+"  Telescope
+"-------------------
+nnoremap <leader>gb <cmd>lua require('telescope.builtin').git_branches()<cr>

@@ -33,6 +33,7 @@ pip install neovim-remote
 # Install js deps
 npm install -g typescript-language-server
 npm install -g eslint_d
+wsys nvim install_efm
 
 # Install plugins
 nvim +PlugInstall +qall

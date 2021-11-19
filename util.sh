@@ -15,10 +15,10 @@ link() {
         echo $should_unlink
         if [[ $should_unlink = 'y' ]]; then
             unlink $link_path
-            echo "Linking $2 to $1"
-            ln -s $1 $2
         else
             echo "Keepig existing link"
         fi
   fi
+  echo "Linking $2 to $1"
+  ln -s $1 $2
 }

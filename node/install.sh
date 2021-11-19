@@ -3,6 +3,8 @@ if ! [ -x "$(command -v asdf)" ]; then
   exit 1
 fi
 
+wsys node install_deps
+
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf install nodejs latest
 asdf global nodejs latest
