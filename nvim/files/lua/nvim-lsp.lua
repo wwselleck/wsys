@@ -1,4 +1,6 @@
 local lspconfig = require('lspconfig')
+local lsp_installer = require("nvim-lsp-installer")
+
 local buf_keymap = vim.api.nvim_buf_set_keymap
 local cmd = vim.cmd
 local keymap_opts = {noremap = true, silent = true}
@@ -44,14 +46,13 @@ local servers = {
     vimls = {},
     efm = {
       init_options = {documentFormatting = true, codeAction = true},
-      cmd = {'efm-langserver', '-logfile', '/tmp/efm.log', '-loglevel', '10'},
       settings = {
         languages = {
           javascript = {eslint},
           javascriptreact = {eslint},
           ["javascript.jsx"] = {eslint},
-          typescript = {eslint},
-          ["typescript.tsx"] = {eslint},
+          typescript = {eslint, prettier},
+          ["typescript.tsx"] = {eslint, prettier},
           typescriptreact = {eslint, prettier}
         }
       },
@@ -67,7 +68,20 @@ local servers = {
     },
 }
 
-for server, config in pairs(servers) do
+-- Register a handler that will be called for all installed servers.
+-- Alternatively, you may also register handlers on specific server instances instead (see example below).
+lsp_installer.on_server_ready(function(server)
+    local config = servers[server.name]
+    print(server.name)
     config.on_attach = config.on_attach or on_attach
-    lspconfig[server].setup(config)
-end
+
+    -- (optional) Customize the options passed to the server
+    -- if server.name == "tsserver" then
+    --     opts.root_dir = function() ... end
+    -- end
+
+    -- This setup() function is exactly the same as lspconfig's setup function.
+    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+    server:setup(config)
+end)
+

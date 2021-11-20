@@ -45,6 +45,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'hrsh7th/nvim-compe'
 Plug 'neovim/nvim-lspconfig'
 Plug 'kosayoda/nvim-lightbulb'
+Plug 'williamboman/nvim-lsp-installer'
 
 """""""""""""""
 "  Color

@@ -116,16 +116,6 @@ alias dkps="docker ps --format '{{.ID}} ~ {{.Names}} ~ {{.Status}} ~ {{.Image}}'
 
 
 ######################
-# asdf
-######################
-if [ ! -d "$HOME/.asdf"  ]
-then
-  echo "Warning: asdf is not installed" >&2
-else
-  . $HOME/.asdf/asdf.sh
-fi
-
-######################
 # nvm
 ######################
 export NVM_DIR="$HOME/.config/nvm"
@@ -136,3 +126,13 @@ export YVM_DIR=/usr/local/opt/yvm
 [ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
 
 eval "$(starship init zsh)"
+
+######################
+# asdf
+######################
+if [ ! -d "$HOME/.asdf"  ]
+then
+  echo "Warning: asdf is not installed" >&2
+else
+  . $HOME/.asdf/asdf.sh
+fi
