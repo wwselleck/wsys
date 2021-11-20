@@ -1,7 +1,7 @@
-source $DOTFILES/util.sh
+source $WSYS/util.sh
 
 # Link config
-link $COMPONENT_DIR/files/.vimrc $NVIMCONFIG/init.vim
-link $COMPONENT_DIR/files/third_party_plugins.vim $NVIMCONFIG/third_party_plugins.vim
-link $COMPONENT_DIR/files/plugin $NVIMCONFIG/plugin
-link $COMPONENT_DIR/files/lua $NVIMCONFIG/lua
+wlink $COMPONENT_DIR/files/.vimrc $NVIMCONFIG/init.vim
+wlink $COMPONENT_DIR/files/third_party_plugins.vim $NVIMCONFIG/third_party_plugins.vim
+wlink $COMPONENT_DIR/files/plugin $NVIMCONFIG/plugin
+wlink $COMPONENT_DIR/files/lua $NVIMCONFIG/lua

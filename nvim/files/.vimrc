@@ -21,4 +21,3 @@ call plug#begin(stdpath('data') . '/plugged')
 runtime! third_party_plugins.vim
 call plug#end()
 
-lua require('nvim-lsp')

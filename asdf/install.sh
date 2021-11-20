@@ -1,4 +1,4 @@
-source $DOTFILES/util.sh
+source $WSYS/util.sh
 
 if ! [ -x "$(command -v curl)" ]; then
   echo 'Error: curl is not installed.' >&2
@@ -12,4 +12,4 @@ fi
 
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
 
-link $COMPONENT_DIR/files/.asdfrc $HOME/.asdfrc
+wlink $COMPONENT_DIR/files/.asdfrc $HOME/.asdfrc

@@ -1,1 +1,1 @@
-link $COMPONENT_DIR/files/.gitconfig $HOME/.gitconfig
+wlink $COMPONENT_DIR/files/.gitconfig $HOME/.gitconfig

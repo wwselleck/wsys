@@ -1,5 +1,6 @@
 local lspconfig = require('lspconfig')
 local lsp_installer = require("nvim-lsp-installer")
+local lsp_installer_servers = require("nvim-lsp-installer.servers")
 
 local buf_keymap = vim.api.nvim_buf_set_keymap
 local cmd = vim.cmd
@@ -12,7 +13,7 @@ local function on_attach(client)
     buf_keymap(0, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', keymap_opts)
     buf_keymap(0, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', keymap_opts)
     buf_keymap(0, 'n', 'gn', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', keymap_opts)
-    buf_keymap(0, 'n', 'gp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', keymap_opts)
+        buf_keymap(0, 'n', 'gp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', keymap_opts)
     buf_keymap(0, 'n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<cr>', keymap_opts)
         print(client.name)
         print(vim.inspect(client.resolved_capabilities))
@@ -32,9 +33,6 @@ local eslint = {
   formatStdin = true
 }
 local prettier = { formatCommand = 'prettier --stdin-filepath ${INPUT}', formatStdin = true }
-
-
-
 
 local servers = {
     tsserver = {
@@ -66,22 +64,31 @@ local servers = {
       },
       rootMarkers = {'package.json'}
     },
+    sumneko_lua = {}
 }
 
--- Register a handler that will be called for all installed servers.
--- Alternatively, you may also register handlers on specific server instances instead (see example below).
-lsp_installer.on_server_ready(function(server)
-    local config = servers[server.name]
-    print(server.name)
-    config.on_attach = config.on_attach or on_attach
+for server, config in pairs(servers) do
+    local server_available, requested_server = lsp_installer_servers.get_server(server)
+    if server_available then
+        print(requested_server)
+        requested_server:on_ready(function()
+            print(server)
+            config.on_attach = config.on_attach or on_attach
 
-    -- (optional) Customize the options passed to the server
-    -- if server.name == "tsserver" then
-    --     opts.root_dir = function() ... end
-    -- end
+            -- (optional) Customize the options passed to the server
+            -- if server.name == "tsserver" then
+            --     opts.root_dir = function() ... end
+            -- end
 
-    -- This setup() function is exactly the same as lspconfig's setup function.
-    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-    server:setup(config)
-end)
+            -- This setup() function is exactly the same as lspconfig's setup function.
+            -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+            requested_server:setup(config)
+        end)
+
+        if not requested_server:is_installed() then
+            requested_server:install()
+        end
+    end
+    print("Installing ", server, "...")
+end
 

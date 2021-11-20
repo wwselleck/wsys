@@ -1,13 +1,12 @@
 #!/bin/bash
 
-source ./zsh/files/.zshenv
+source $WSYS/zsh/files/.zshenv
 
 export OS=${OS:-ubuntu}
 
 export COMPONENT_NAME=$1
 export COMPONENT_ACTION=$2
-export COMPONENT_DIR="$DOTFILES/$1"
-
+export COMPONENT_DIR="$WSYS/$1"
 
 if [ ! -d $COMPONENT_DIR  ]
 then

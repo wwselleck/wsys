@@ -1,4 +1,4 @@
-source $DOTFILES/util.sh
+source $WSYS/util.sh
 
 if ! [ -x "$(command -v pip)" ]; then
   echo 'Error: pip is not installed.' >&2
