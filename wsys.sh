@@ -1,10 +1,33 @@
 #!/bin/bash
 
-source $WSYS/zsh/files/.zshenv
+source "$WSYS"/zsh/files/.zshenv
 
 export OS=${OS:-ubuntu}
 
-export COMPONENT_NAME=$1
+export COMPONENT_NAME_OR_ACTION=$1
+
+if [[ "$COMPONENT_NAME_OR_ACTION" = "edit" ]]; then
+    COMPONENT_NAME=$2
+    if COMPONENT_DIR=$(wsys path "$COMPONENT_NAME"); then
+        "$VISUAL" "$COMPONENT_DIR"
+    else
+        echo $?
+        exit 0
+    fi
+fi
+
+if [[ "$COMPONENT_NAME_OR_ACTION" = "path" ]]; then
+    COMPONENT_NAME=$2
+    COMPONENT_DIR="$WSYS/$COMPONENT_NAME"
+    if [ ! -d "$COMPONENT_DIR"  ]
+    then
+      echo "$COMPONENT_NAME is not a valid component" >&2
+      exit 1
+    fi
+    echo $COMPONENT_DIR
+    exit 0
+fi
+
 export COMPONENT_ACTION=$2
 export COMPONENT_DIR="$WSYS/$1"
 
@@ -38,5 +61,5 @@ fi
 
 
 echo "Running $ACTION_FILE_PATH"
-. $ACTION_FILE_PATH
+. "$ACTION_FILE_PATH"
 

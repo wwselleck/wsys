@@ -89,6 +89,5 @@ for server, config in pairs(servers) do
             requested_server:install()
         end
     end
-    print("Installing ", server, "...")
 end
 

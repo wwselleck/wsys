@@ -22,7 +22,7 @@
 "-------------------
 " vim-fugitive
 "-------------------
-nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gs :Git<CR>
 nnoremap <leader>gd :Gvdiff<CR>
 
 "-------------------
