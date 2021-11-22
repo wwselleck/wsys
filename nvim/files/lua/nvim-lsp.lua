@@ -70,9 +70,7 @@ local servers = {
 for server, config in pairs(servers) do
     local server_available, requested_server = lsp_installer_servers.get_server(server)
     if server_available then
-        print(requested_server)
         requested_server:on_ready(function()
-            print(server)
             config.on_attach = config.on_attach or on_attach
 
             -- (optional) Customize the options passed to the server

@@ -24,6 +24,7 @@
 """""""""""""""""""""""""""""""""""""""
 
 lua require('nvim-lsp')
+lua require('treesitter')
 
 
 """"""""""""""""""""
