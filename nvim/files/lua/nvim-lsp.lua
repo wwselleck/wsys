@@ -37,11 +37,12 @@ local prettier = { formatCommand = 'prettier --stdin-filepath ${INPUT}', formatS
 local servers = {
     tsserver = {
             on_attach = function(client, bufnr)
-            client.resolved_capabilities.document_formatting = false
-            on_attach(client, bufnr)
-        end,
+                client.resolved_capabilities.document_formatting = false
+                on_attach(client, bufnr)
+            end,
     },
     vimls = {},
+   --[[
     efm = {
       init_options = {documentFormatting = true, codeAction = true},
       settings = {
@@ -64,7 +65,22 @@ local servers = {
       },
       rootMarkers = {'package.json'}
     },
-    sumneko_lua = {}
+    ]]
+    sumneko_lua = {},
+    eslint = {
+        -- Found here https://github.com/neovim/nvim-lspconfig/issues/1310
+        on_attach = function(client, bufnr)
+                client.resolved_capabilities.document_formatting = true
+                on_attach(client, bufnr)
+
+        end,
+        settings = {
+            format = {
+                enable = true
+            }
+        }
+
+    }
 }
 
 for server, config in pairs(servers) do
