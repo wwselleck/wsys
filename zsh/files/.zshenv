@@ -8,7 +8,7 @@ export ZSH_PLUGINS="$XDG_STATE_HOME/zsh-plugins"
 
 export NVIMCONFIG="$XDG_CONFIG_HOME/nvim"
 
-export WSYS=$HOME/wsys
+export WSYS=$HOME/dev/wsys
 
 export VISUAL="nvim"
 export EDITOR="nvim"

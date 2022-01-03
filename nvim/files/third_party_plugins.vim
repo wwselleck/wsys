@@ -23,6 +23,8 @@ Plug 'nvim-lua/plenary.nvim'
 
 Plug 'vhyrro/neorg'
 
+Plug 'vimwiki/vimwiki'
+
 """""""""""""""""""""""""""
 " Git
 """""""""""""""""""""""""""
@@ -35,7 +37,6 @@ Plug 'airblade/vim-gitgutter'
 """""""""""""""
 " Language Features
 """""""""""""""
-"Plug 'sheerun/vim-polyglot'
 Plug 'jparise/vim-graphql'
 Plug 'fatih/vim-go'
 " Kind of a language feature?

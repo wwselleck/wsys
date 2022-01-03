@@ -18,6 +18,7 @@ local function on_attach(client)
         print(client.name)
         print(vim.inspect(client.resolved_capabilities))
     if client.resolved_capabilities.document_formatting then
+        print("HERE")
 
         cmd('au BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 5000)')
         buf_keymap(0, 'n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<cr>', keymap_opts)
@@ -72,7 +73,6 @@ local servers = {
         on_attach = function(client, bufnr)
                 client.resolved_capabilities.document_formatting = true
                 on_attach(client, bufnr)
-
         end,
         settings = {
             format = {
