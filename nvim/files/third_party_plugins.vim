@@ -35,7 +35,7 @@ Plug 'airblade/vim-gitgutter'
 """""""""""""""
 " Language Features
 """""""""""""""
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
 Plug 'jparise/vim-graphql'
 Plug 'fatih/vim-go'
 " Kind of a language feature?

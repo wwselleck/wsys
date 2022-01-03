@@ -1,6 +1,8 @@
-link() {
+wlink() {
   original_file=$1
   link_path=$2
+
+  echo $link_path
 
   if [[ -L "$link_path" ]]; then
         existing_file_linked_to=$(readlink "$link_path")
@@ -18,6 +20,9 @@ link() {
         else
             echo "Keepig existing link"
         fi
+  elif [[ -f "$link_path" ]]; then
+      echo "$link_path already exists (not as link), delete before continuing"
+      return 1
   fi
   echo "Linking $2 to $1"
   ln -s $1 $2
