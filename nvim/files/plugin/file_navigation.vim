@@ -25,19 +25,18 @@ nnoremap <leader>fl <cmd>lua require('telescope.builtin').current_buffer_fuzzy_f
 
 lua << EOF
 require('telescope').setup{
- defaults = {
-    vimgrep_arguments = {
-      'rg',
-      '--color=never',
-      '--hidden',
-      '--no-heading',
-      '--with-filename',
-      '--line-number',
-      '--column',
-      '--smart-case'
+    defaults = {
+        file_ignore_patterns = { "node_modules", ".git" }
     },
-  }
+    pickers = {
+        buffers = {
+            sort_lastused = true
+        }
+    }
 }
+
+require('telescope').load_extension('fzf')
+
 EOF
 
 autocmd VimEnter * nnoremap <Leader>e :Grepper<CR>

@@ -15,6 +15,11 @@ if ! [ -x "$(command -v rg)" ]; then
   wsys cli-tools install
 fi
 
+if ! [ -x "$(command -v fd)" ]; then
+  echo 'fd is not installed, installing'
+  wsys cli-tools install
+fi
+
 wsys nvim install_package
 
 # Install VimPlug

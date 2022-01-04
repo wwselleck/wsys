@@ -42,7 +42,10 @@ Plug 'fatih/vim-go'
 " Kind of a language feature?
 Plug 'honza/vim-snippets'
 Plug 'nvim-lua/popup.nvim'
+
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+
 Plug 'hrsh7th/nvim-compe'
 Plug 'neovim/nvim-lspconfig'
 Plug 'kosayoda/nvim-lightbulb'
