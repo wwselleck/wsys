@@ -10,5 +10,7 @@ export NVIMCONFIG="$XDG_CONFIG_HOME/nvim"
 
 export WSYS=$HOME/dev/wsys
 
+export WNOTES=$HOME/Dropbox/_notes
+
 export VISUAL="nvim"
 export EDITOR="nvim"

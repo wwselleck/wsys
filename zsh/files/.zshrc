@@ -21,8 +21,16 @@ unsetopt null_glob
 
 unsetopt BEEP
 
+######################
+# Personal Notes Aliases
+######################
 
+alias wn='$VISUAL $WNOTES'
+alias wdaily='$VISUAL $WNOTES/daily'
+
+######################
 # LS Aliases
+######################
 alias l='ls -laFh'     #size,show type,human readable
 alias la='ls -lAFh'   #long list,show almost all,show type,human readable
 alias lr='ls -tRFh'   #sorted by date,recursive,show type,human readable
