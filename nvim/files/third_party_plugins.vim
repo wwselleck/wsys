@@ -23,7 +23,6 @@ Plug 'nvim-lua/plenary.nvim'
 
 Plug 'vhyrro/neorg'
 
-Plug 'vimwiki/vimwiki'
 
 """""""""""""""""""""""""""
 " Git
