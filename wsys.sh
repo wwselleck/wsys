@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source "$WSYS"/zsh/files/.zshenv
+source "$WSYS"/util.sh
 
 export OS=${OS:-ubuntu}
 
@@ -59,6 +60,12 @@ then
 fi
 
 
+# Utility commands for subshells to use
+
+# Get file local to component
+file_path() {
+    echo "$COMPONENT_DIR/files/$1"
+}
 
 echo "Running $ACTION_FILE_PATH"
 . "$ACTION_FILE_PATH"

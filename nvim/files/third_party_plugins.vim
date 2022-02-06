@@ -1,6 +1,7 @@
 Plug 'tpope/vim-sensible'
 Plug 'scrooloose/nerdcommenter'
-Plug 'itchyny/lightline.vim'
+Plug 'nvim-lualine/lualine.nvim' | Plug  'kyazdani42/nvim-web-devicons'
+Plug 'akinsho/bufferline.nvim'
 Plug 'mhinz/vim-grepper'
 Plug 'jceb/vim-orgmode'
 Plug 'tpope/vim-projectionist'
@@ -21,7 +22,7 @@ Plug 'folke/which-key.nvim'
 
 Plug 'nvim-lua/plenary.nvim'
 
-Plug 'vhyrro/neorg'
+Plug 'nvim-neorg/neorg' | Plug 'nvim-lua/plenary.nvim'
 
 
 """""""""""""""""""""""""""
@@ -90,7 +91,9 @@ Plug 'embark-theme/vim', { 'as': 'embark' }
 Plug 'haishanh/night-owl.vim'
 Plug 'wojciechkepka/bogster'
 Plug 'folke/tokyonight.nvim'
-
+Plug 'rebelot/kanagawa.nvim'
+Plug 'joshdick/onedark.vim'
+Plug 'tiagovla/tokyodark.nvim'
 
 """""""""""""""
 " Look into these

@@ -12,6 +12,9 @@ let g:gruvbox_contrast_dark='hard'
 " Nord
 let g:nord_comment_brightness=20
 
+" Tokyonight
+let g:tokyonight_style = 'night'
+
 " This stuff being below the per-colorscheme config
 " actually matters, sometimes. Try moving gruvbox constract option below
 " and see what happens.
@@ -25,8 +28,6 @@ set termguicolors
 " light and dark variations
 set background=dark
 
-colorscheme tokyonight
-let g:tokyonight_style = 'night'
 
 highlight Normal ctermbg=NONE
 highlight nonText ctermbg=NONE
@@ -42,3 +43,14 @@ highlight nonText ctermbg=NONE
 " Rainbow Brackets plugin
 " -------------------
 let g:rainbow_active = 1
+
+lua << EOF
+require('nvim-web-devicons').setup{}
+    local possibleColors = { 'dracula', 'kanagawa', 'tokyodark'  }
+
+    -- This is important for some reason
+    math.randomseed(os.time())
+
+    local color = possibleColors[ math.random(#possibleColors) ]
+    vim.cmd('colorscheme ' .. color)
+EOF

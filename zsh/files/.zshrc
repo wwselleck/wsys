@@ -25,8 +25,7 @@ unsetopt BEEP
 # Personal Notes Aliases
 ######################
 
-alias wn='$VISUAL $WNOTES'
-alias wdaily='$VISUAL $WNOTES/daily'
+alias wn='nvim +Neorg workspaces main'
 
 ######################
 # LS Aliases
