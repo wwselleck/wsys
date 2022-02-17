@@ -6,8 +6,8 @@ if ! [ -x "$(command -v pip)" ]; then
 fi
 
 if ! [ -x "$(command -v npm)" ]; then
-  echo 'Error: npm is not installed.' >&2
-  exit 1
+  echo 'npm is not installed, installing node' >&2
+  wsys node install
 fi
 
 if ! [ -x "$(command -v rg)" ]; then

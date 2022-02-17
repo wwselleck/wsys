@@ -2,8 +2,6 @@ wlink() {
   original_file=$1
   link_path=$2
 
-  echo $link_path
-
   if [[ -L "$link_path" ]]; then
         existing_file_linked_to=$(readlink "$link_path")
 
@@ -18,12 +16,16 @@ wlink() {
         if [[ $should_unlink = 'y' ]]; then
             unlink $link_path
         else
-            echo "Keepig existing link"
+            echo "Keeping existing link"
         fi
   elif [[ -f "$link_path" ]]; then
       echo "$link_path already exists (not as link), delete before continuing"
       return 1
   fi
   echo "Linking $2 to $1"
+  target_dir=$(dirname "$2")
+  if [[ ! -d "$target_dir" ]]; then
+	  mkdir "$target_dir"
+  fi
   ln -s $1 $2
 }

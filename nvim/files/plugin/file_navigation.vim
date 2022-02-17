@@ -22,6 +22,7 @@ nnoremap <leader>fa <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>fl <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
+nnoremap <leader>fc <cmd>lua require('telescope.builtin').commands()<cr>
 
 lua << EOF
 require('telescope').setup{
@@ -39,9 +40,21 @@ require('telescope').load_extension('fzf')
 
 EOF
 
-autocmd VimEnter * nnoremap <Leader>e :Grepper<CR>
-autocmd VimEnter * let g:grepper.tools = ['rg']
-autocmd VimEnter * let g:grepper.rg.grepprg .= ' --hidden'
+set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+nnoremap <leader>e :silent grep<Space>
+
+" Open quickfix list automatically after it's populated
+" https://www.reddit.com/r/vim/comments/bmh977/automatically_open_quickfix_window_after/
+augroup quickfix
+    autocmd!
+    autocmd QuickFixCmdPost [^l]* cwindow
+    autocmd QuickFixCmdPost l* lwindow
+augroup END
+
+" Trying out no grepper, just using native vim things
+"autocmd VimEnter * nnoremap <Leader>e :Grepper<CR>
+"autocmd VimEnter * let g:grepper.tools = ['rg']
+"autocmd VimEnter * let g:grepper.rg.grepprg .= ' --hidden'
 
 
 " "-------------------

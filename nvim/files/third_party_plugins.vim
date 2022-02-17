@@ -2,7 +2,6 @@ Plug 'tpope/vim-sensible'
 Plug 'scrooloose/nerdcommenter'
 Plug 'nvim-lualine/lualine.nvim' | Plug  'kyazdani42/nvim-web-devicons'
 Plug 'akinsho/bufferline.nvim'
-Plug 'mhinz/vim-grepper'
 Plug 'jceb/vim-orgmode'
 Plug 'tpope/vim-projectionist'
 
