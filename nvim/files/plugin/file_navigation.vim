@@ -50,30 +50,3 @@ augroup quickfix
     autocmd QuickFixCmdPost [^l]* cwindow
     autocmd QuickFixCmdPost l* lwindow
 augroup END
-
-" Trying out no grepper, just using native vim things
-"autocmd VimEnter * nnoremap <Leader>e :Grepper<CR>
-"autocmd VimEnter * let g:grepper.tools = ['rg']
-"autocmd VimEnter * let g:grepper.rg.grepprg .= ' --hidden'
-
-
-" "-------------------
-" " NERDTree
-" "-------------------
-" "-------------------
-"
-" " <leader>n opens nerd tree
-" nmap <leader>n :NERDTreeToggle<CR>
-" " <leader>j opens current file in tree
-" nmap <leader>j :NERDTreeFind<CR>
-" " Show hidden files by default
-" let NERDTreeShowHidden=1
-"
-" " Start NERDTree on start when no file given
-" "autocmd StdinReadPre * let s:std_in=1
-" "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-"
-" " Destroy <c-j> and <c-k> mappings, mapped below
-" " http://stackoverflow.com/questions/38599147/how-to-disable-a-nerdtree-mapping-that-conflicts-with-a-custom-mapping
-" let g:NERDTreeMapJumpNextSibling = ''
-" let g:NERDTreeMapJumpPrevSibling = ''

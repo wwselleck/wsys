@@ -22,7 +22,7 @@ if exists(':tnoremap')
     tnoremap <Esc> <C-\><C-n>
 end
 
-"Move vertically buy visual line instead of real line
+"Move vertically by visual line instead of real line
 nnoremap j gj
 nnoremap k gk
 
@@ -66,6 +66,6 @@ function! MoveToPrevTab()
 endfunc
 
 nnoremap mh :call MoveToPrevTab()<CR>
-" I CAN HAZ NORMAL REGEXES?
+
 nnoremap / /\v
 vnoremap / /\v
