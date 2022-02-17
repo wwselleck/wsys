@@ -10,7 +10,8 @@ Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-surround'
 
 " automatically insert or delete {} () '' stuff
-Plug 'jiangmiao/auto-pairs'
+Plug 'windwp/nvim-autopairs'
+"Plug 'jiangmiao/auto-pairs'
 
 " Highlight the yanked region
 Plug 'machakann/vim-highlightedyank'
