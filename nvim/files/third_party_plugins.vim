@@ -33,6 +33,8 @@ Plug 'junegunn/gv.vim'
 Plug 'tommcdo/vim-fubitive'
 Plug 'airblade/vim-gitgutter'
 
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 """""""""""""""
 " Language Features
@@ -43,10 +45,13 @@ Plug 'fatih/vim-go'
 Plug 'honza/vim-snippets'
 Plug 'nvim-lua/popup.nvim'
 
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
-Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+
 Plug 'neovim/nvim-lspconfig'
 Plug 'kosayoda/nvim-lightbulb'
 Plug 'williamboman/nvim-lsp-installer'
