@@ -41,12 +41,12 @@ require('telescope').load_extension('fzf')
 EOF
 
 set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
-nnoremap <leader>e :silent grep<Space>
+nnoremap <leader>e :silent grep!<Space>
 
 " Open quickfix list automatically after it's populated
 " https://www.reddit.com/r/vim/comments/bmh977/automatically_open_quickfix_window_after/
 augroup quickfix
     autocmd!
-    autocmd QuickFixCmdPost [^l]* cwindow
-    autocmd QuickFixCmdPost l* lwindow
+    autocmd QuickFixCmdPost [^l]* bot cwindow
+    autocmd QuickFixCmdPost l* bot lwindow
 augroup END
