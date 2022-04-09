@@ -1,8 +1,7 @@
 Plug 'tpope/vim-sensible'
-Plug 'scrooloose/nerdcommenter'
+Plug 'numToStr/Comment.nvim'
 Plug 'nvim-lualine/lualine.nvim' | Plug  'kyazdani42/nvim-web-devicons'
 Plug 'akinsho/bufferline.nvim'
-Plug 'jceb/vim-orgmode'
 Plug 'tpope/vim-projectionist'
 
 " Manipulate 'surrounding' things like (), {}, ''
@@ -22,8 +21,7 @@ Plug 'folke/which-key.nvim'
 
 Plug 'nvim-lua/plenary.nvim'
 
-Plug 'nvim-neorg/neorg' | Plug 'nvim-lua/plenary.nvim'
-
+Plug 'folke/which-key.nvim'
 
 """""""""""""""""""""""""""
 " Git
@@ -32,6 +30,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'tommcdo/vim-fubitive'
 Plug 'airblade/vim-gitgutter'
+
+"""""""""""""""
+" File Navigation
+"""""""""""""""
 
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
