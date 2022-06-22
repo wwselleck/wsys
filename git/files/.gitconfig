@@ -1,5 +1,6 @@
 [user]
 	email = wwselleck@gmail.com
+	name = Weston Selleck
 # https://github.com/garybernhardt/dotfiles/blob/master/.gitconfig
 [color]
     ui = auto

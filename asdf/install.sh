@@ -13,3 +13,4 @@ fi
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
 
 wlink $COMPONENT_DIR/files/.asdfrc $HOME/.asdfrc
+wlink $COMPONENT_DIR/files/.tool-versions $HOME/.tool-versions
