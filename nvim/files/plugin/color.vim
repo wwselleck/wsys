@@ -24,7 +24,7 @@ let g:rainbow_active = 1
 
 lua << EOF
     require('nvim-web-devicons').setup{}
-    local possibleColors = { 'dracula', 'kanagawa', 'tokyodark'  }
+    local possibleColors = { 'kanagawa', 'tokyodark'  }
 
     -- This is important for some reason
     math.randomseed(os.time())

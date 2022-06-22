@@ -15,11 +15,7 @@ local function on_attach(client)
     buf_keymap(0, 'n', 'gn', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', keymap_opts)
         buf_keymap(0, 'n', 'gp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', keymap_opts)
     buf_keymap(0, 'n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<cr>', keymap_opts)
-        print(client.name)
-        print(vim.inspect(client.resolved_capabilities))
     if client.resolved_capabilities.document_formatting then
-        print("HERE")
-
         cmd('au BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 5000)')
         buf_keymap(0, 'n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<cr>', keymap_opts)
     end

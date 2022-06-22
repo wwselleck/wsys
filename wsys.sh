@@ -10,7 +10,8 @@ export COMPONENT_NAME_OR_ACTION=$1
 if [[ "$COMPONENT_NAME_OR_ACTION" = "edit" ]]; then
     COMPONENT_NAME=$2
     if COMPONENT_DIR=$(wsys path "$COMPONENT_NAME"); then
-        "$VISUAL" "$COMPONENT_DIR"
+        cd "$COMPONENT_DIR"
+        "$VISUAL"
     else
         echo $?
         exit 0

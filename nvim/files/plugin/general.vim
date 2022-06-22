@@ -56,3 +56,7 @@ command! Path echo @%
 " Use ,y to copy to clipboard
 vnoremap <leader>y "*y
 
+lua << EOF
+  require("which-key").setup {
+  }
+EOF

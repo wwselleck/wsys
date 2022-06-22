@@ -13,6 +13,11 @@ let g:javascript_plugin_jsdoc = 1
 let g:flow#autoclose = 1
 
 "-------------------
+" JSON Specific
+"-------------------
+autocmd FileType json setlocal shiftwidth=2 expandtab tabstop=2 softtabstop=2
+
+"-------------------
 " Coffeescript Specific
 "-------------------
 autocmd FileType coffee setlocal shiftwidth=2 expandtab tabstop=2 softtabstop=2

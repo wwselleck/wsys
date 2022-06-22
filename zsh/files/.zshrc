@@ -10,22 +10,7 @@ source ${ZSH_PLUGINS}/zsh-history-substring-search/zsh-history-substring-search.
 
 include ~/.zshrc.local
 
-setopt null_glob
-if [[ -d "$MEW_DATA_DIR/zsh/localZshrcs" ]]; then
-  for file in "$MEW_DATA_DIR/zsh/localZshrcs"/*; do
-    echo $file
-    source "$file"
-  done
-fi
-unsetopt null_glob
-
 unsetopt BEEP
-
-######################
-# Personal Notes Aliases
-######################
-
-alias wn='nvim +Neorg workspaces main'
 
 ######################
 # LS Aliases
@@ -42,6 +27,10 @@ alias ll='ls -l'      #long list
 autoload -Uz compinit && compinit
 _comp_options+=(globdots) # With hidden files
 setopt auto_menu
+zstyle ':completion:*' completer _extensions _complete _approximate
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' file-list all
 
 ######################
 # History
