@@ -11,4 +11,8 @@ asdf global python latest
 
 asdf plugin-add poetry https://github.com/asdf-community/asdf-poetry.git
 
+pip install black
+
+asdf reshim python
+
 
