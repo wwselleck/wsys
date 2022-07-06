@@ -59,6 +59,8 @@ Plug 'kosayoda/nvim-lightbulb'
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+Plug 'mfussenegger/nvim-dap'
+
 """""""""""""""
 "  Color
 """""""""""""""
