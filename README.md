@@ -22,3 +22,4 @@ This will open $VISUAL with the module's directory
 https://www.moolenaar.net/habits.html
 https://github.com/jdhao/nvim-config
 https://github.com/rafi/vim-config
+https://github.com/lukas-reineke/dotfiles/blob/master/vim/lua/lsp/init.lua
